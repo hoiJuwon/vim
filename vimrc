@@ -1,38 +1,4 @@
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim'
-Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier'
-Plug 'raimondi/delimitmate'
-Plug 'owickstrom/vim-colors-paramount'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-call plug#end()
-
 let mapleader = ","
-
-colorscheme paramount
-
-" for typescript
-let g:coc_global_extensions = [ 'coc-tsserver' ]
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" for eslint
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
-let g:ale_fix_on_save = 1
-
-" for prettier
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-
-" for fzf
-nnoremap <silent> <C-f> :Files<CR>
 
 set encoding=UTF-8
 set fileencodings=UTF-8
@@ -86,7 +52,41 @@ endfunction
 " Status line
 set statusline=%!MyStatusLine()
 
-" netrw
-let g:netrw_liststyle = 3
-let g:netrw_list_hide = '^\.\.\=/\=$,.DS_Store,.idea,.git,__pycache__,venv,node_modules,*\.o,*\.pyc,.*\.swp'
-let g:netrw_hide = 1
+call plug#begin('~/.vim/plugged')
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim'
+Plug 'w0rp/ale'
+Plug 'scrooloose/nerdtree'
+Plug 'prettier/vim-prettier'
+Plug 'raimondi/delimitmate'
+Plug 'owickstrom/vim-colors-paramount'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+call plug#end()
+
+colorscheme paramount
+
+" for typescript
+let g:coc_global_extensions = [ 'coc-tsserver' ]
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" for eslint
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_fix_on_save = 1
+
+" for prettier
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+
+" for fzf
+nnoremap <silent> <C-f> :Files<CR>
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.jsx, *.tsx'
+
