@@ -2,14 +2,13 @@ let mapleader = ","
 
 set encoding=UTF-8
 set fileencodings=UTF-8
-
 set et
 set ts=2
 set sts=2
 set sw=2
 setlocal wildignore=*/__pycacehe__/*,*.pyc
 setlocal wildignore=*/.node_modules
-set wildignore=*/node_modules/*
+set wildignore=*/.node_modules/*
 set cursorline
 
 syntax enable
@@ -36,6 +35,9 @@ set wildmenu
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
 nnoremap ,rt :-1read $HOME/.vim/.skeleton.js<CR>9Geeeciw<C-R>=expand("%:t:r")<cr>
 
+" using buffer 
+nnoremap <leader>f :ls<CR>:b<Space>
+
 function! MyStatusLine()
     let statusline = ""
     " Filename (F -> full, f -> relative)
@@ -54,6 +56,7 @@ set statusline=%!MyStatusLine()
 
 call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'
+Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim'
 Plug 'w0rp/ale'
@@ -61,6 +64,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'prettier/vim-prettier'
 Plug 'raimondi/delimitmate'
 Plug 'owickstrom/vim-colors-paramount'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
@@ -88,5 +93,7 @@ let g:prettier#autoformat_require_pragma = 0
 " for fzf
 nnoremap <silent> <C-f> :Files<CR>
 
+let g:NERDTreeRespectWildIgnore = 1
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.jsx, *.tsx'
 
+ let delimitMate_expand_cr=1
