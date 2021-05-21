@@ -3,29 +3,25 @@ let mapleader = ","
 set encoding=UTF-8
 set fileencodings=UTF-8
 set et
-set ts=2
-set sts=2
-set sw=2
+set ts=4
+set sts=4
+set sw=4
 setlocal wildignore=*/__pycacehe__/*,*.pyc
 setlocal wildignore=*/.node_modules
-set wildignore=*/.node_modules/*
-set cursorline
+set wildignore=*/.node_modules/* 
 
+" set cursorline
 syntax enable
 set number
 set mousehide
 set bg=dark
-
 set hlsearch
 set incsearch
 set smartcase
-
 set path+=**
-
 set autoindent
 set smartindent
 set nowrap
-
 set history=100
 set autowrite
 set laststatus=2
@@ -54,6 +50,8 @@ endfunction
 " Status line
 set statusline=%!MyStatusLine()
 
+highlight clear SignColumn
+
 call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
@@ -63,17 +61,16 @@ Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'prettier/vim-prettier'
 Plug 'raimondi/delimitmate'
-Plug 'owickstrom/vim-colors-paramount'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'tomlion/vim-solidity'
 call plug#end()
-
-colorscheme paramount
 
 " for typescript
 let g:coc_global_extensions = [ 'coc-tsserver' ]
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -93,7 +90,11 @@ let g:prettier#autoformat_require_pragma = 0
 " for fzf
 nnoremap <silent> <C-f> :Files<CR>
 
+" for nerdtree
 let g:NERDTreeRespectWildIgnore = 1
+
+" for closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.jsx, *.tsx'
 
- let delimitMate_expand_cr=1
+" for delimitmate
+let delimitMate_expand_cr=1
