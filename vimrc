@@ -55,6 +55,8 @@ set statusline=%!MyStatusLine()
 highlight clear SignColumn
 hi Pmenu ctermbg=darkgray ctermfg=white
 
+command! MakeTags !ctags -R .
+
 call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
