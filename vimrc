@@ -14,7 +14,6 @@ set wildignore=*/.node_modules/*
 
 " set cursorline
 syntax enable
-" set number
 set mousehide
 set bg=dark
 set hlsearch
@@ -28,6 +27,7 @@ set history=100
 set autowrite
 set laststatus=2
 set wildmenu
+" set number
 
 " SNIPPETS:
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
@@ -93,6 +93,9 @@ let g:prettier#autoformat_require_pragma = 0
 
 " for fzf
 nnoremap <silent> <C-f> :Files<CR>
+
+" for fzf
+nnoremap <silent> <C-g> :Ag<CR>
 
 " for nerdtree
 let g:NERDTreeRespectWildIgnore = 1
