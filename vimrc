@@ -36,6 +36,9 @@ nnoremap ,rt :-1read $HOME/.vim/.skeleton.js<CR>9Geeeciw<C-R>=expand("%:t:r")<cr
 " using buffer 
 nnoremap <leader>f :ls<CR>:b<Space>
 
+" using tabnew
+nnoremap <leader>t :tabnew<CR>:e .<CR>
+
 function! MyStatusLine()
     let statusline = ""
     " Filename (F -> full, f -> relative)
