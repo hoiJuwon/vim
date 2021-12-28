@@ -12,6 +12,8 @@ setlocal wildignore=*/__pycacehe__/*,*.pyc
 setlocal wildignore=*/.node_modules
 set wildignore=*/.node_modules/* 
 
+set relativenumber
+
 " set cursorline
 syntax enable
 set mousehide
@@ -73,6 +75,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tomlion/vim-solidity'
+Plug 'miguelmota/cairo.vim'
+Plug 'rust-lang/rust.vim'
 "Plug 'w0rp/ale'
 call plug#end()
 " for typescript
@@ -118,3 +122,5 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+" for cairo
