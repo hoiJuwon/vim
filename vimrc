@@ -123,4 +123,5 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" for cairo
+" for rust coc bg
+highlight CocFloating ctermbg=gray
