@@ -29,7 +29,9 @@ set history=100
 set autowrite
 set laststatus=2
 set wildmenu
-" set number
+
+" for yy to clipboard
+set clipboard=unnamed
 
 " SNIPPETS:
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
@@ -77,6 +79,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tomlion/vim-solidity'
 Plug 'miguelmota/cairo.vim'
 Plug 'rust-lang/rust.vim'
+Plug 'vyperlang/vim-vyper'
 "Plug 'w0rp/ale'
 call plug#end()
 " for typescript
