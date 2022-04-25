@@ -30,9 +30,6 @@ set autowrite
 set laststatus=2
 set wildmenu
 
-" for yy to clipboard
-set clipboard=unnamed
-
 " SNIPPETS:
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
 nnoremap ,rt :-1read $HOME/.vim/.skeleton.js<CR>9Geeeciw<C-R>=expand("%:t:r")<cr>
