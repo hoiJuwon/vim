@@ -12,7 +12,7 @@ setlocal wildignore=*/__pycacehe__/*,*.pyc
 setlocal wildignore=*/.node_modules
 set wildignore=*/.node_modules/* 
 
-set relativenumber
+set number relativenumber
 
 " set cursorline
 syntax enable
@@ -65,7 +65,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'prettier/vim-prettier'
 Plug 'raimondi/delimitmate'
@@ -74,9 +74,12 @@ Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tomlion/vim-solidity'
-Plug 'miguelmota/cairo.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'vyperlang/vim-vyper'
+Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'nanotech/jellybeans.vim'
+Plug 'arzg/vim-colors-xcode'
+
 "Plug 'w0rp/ale'
 call plug#end()
 " for typescript
@@ -114,14 +117,25 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.jsx, *.tsx'
 let delimitMate_expand_cr=1
 
 " use <Tab> key to trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(0) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" for rust coc bg
-highlight CocFloating ctermbg=gray
+" augroup vim-colors-xcode
+"     autocmd!
+" augroup END
+
+" autocmd vim-colors-xcode ColorScheme * hi Comment        cterm=italic gui=italic
+" autocmd vim-colors-xcode ColorScheme * hi SpecialComment cterm=italic gui=italic
+
+" set termguicolors
