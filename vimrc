@@ -29,6 +29,7 @@ set history=100
 set autowrite
 set laststatus=2
 set wildmenu
+set modifiable
 
 " SNIPPETS:
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
@@ -52,7 +53,6 @@ function! MyStatusLine()
     let statusline .= "(%l,%c%V) "
     return statusline
 endfunction
-
 " Status line
 set statusline=%!MyStatusLine()
 
@@ -67,7 +67,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-Plug 'prettier/vim-prettier'
 Plug 'raimondi/delimitmate'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
@@ -76,11 +75,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tomlion/vim-solidity'
 Plug 'rust-lang/rust.vim'
 Plug 'vyperlang/vim-vyper'
-Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'nanotech/jellybeans.vim'
-Plug 'arzg/vim-colors-xcode'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-"Plug 'w0rp/ale'
 call plug#end()
 " for typescript
 " let g:coc_global_extensions = [ 'coc-tsserver' ]
@@ -96,10 +93,6 @@ nmap <silent> gr <Plug>(coc-references)
 " \ 'javascript': ['eslint']
 " \ }
 "let g:ale_fix_on_save = 1
-
-" for prettier
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
 
 " for fzf
 nnoremap <silent> <C-f> :Files<CR>
@@ -131,11 +124,15 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" augroup vim-colors-xcode
-"     autocmd!
-" augroup END
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
-" autocmd vim-colors-xcode ColorScheme * hi Comment        cterm=italic gui=italic
-" autocmd vim-colors-xcode ColorScheme * hi SpecialComment cterm=italic gui=italic
+" vim-gitgutter
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
 
-" set termguicolors
+" Update sign column every quarter second
+set updatetime=250

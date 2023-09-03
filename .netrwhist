@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/choijuwon/Desktop/development/works/time-capsule-monorepo/contract'
+let g:netrw_dirhist_3='/Users/choijuwon/Desktop/development/starkware/starkex-contracts/audit'
+let g:netrw_dirhist_2='/Users/choijuwon/Desktop/development/starkware/starkex-contracts'
+let g:netrw_dirhist_1='/Users/choijuwon/Desktop/development/works/protocol'
+let g:netrw_dirhist_0='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn/initialize/register/1101-dkDON'
+let g:netrw_dirhist_9='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn/initialize/register'
+let g:netrw_dirhist_8='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn/src/KIP7'
+let g:netrw_dirhist_7='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn/src'
+let g:netrw_dirhist_6='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn'
+let g:netrw_dirhist_5='/Users/choijuwon/Desktop/development/donkey/protocol-klaytn/networks'
