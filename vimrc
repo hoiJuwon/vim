@@ -61,6 +61,15 @@ hi Pmenu ctermbg=darkgray ctermfg=white
 
 command! MakeTags !ctags -R .
 
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <ESC> <C-C>
+inoremap jj <ESC>
+set updatetime=250
+
 call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
@@ -119,10 +128,6 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(0) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
@@ -135,4 +140,3 @@ let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
 
 " Update sign column every quarter second
-set updatetime=250
