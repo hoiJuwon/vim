@@ -71,6 +71,7 @@ inoremap jj <ESC>
 set updatetime=250
 
 call plug#begin('~/.vim/plugged')
+Plug 'dense-analysis/ale'
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
@@ -86,6 +87,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'vyperlang/vim-vyper'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'ambv/black'
+
 
 call plug#end()
 " for typescript
@@ -96,12 +99,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" for eslint
-"let g:ale_fixers = {
-" \ 'javascript': ['eslint']
-" \ }
-"let g:ale_fix_on_save = 1
 
 " for fzf
 nnoremap <silent> <C-f> :Files<CR>
@@ -139,4 +136,15 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
 
-" Update sign column every quarter second
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
+let g:black_quiet = 1
+
+let g:ale_linters={
+\ 'python': ['pylint'],
+\}
+let g:ale_completion_enabled = 1
+
+autocmd BufWritePost *.py execute ':Black'
