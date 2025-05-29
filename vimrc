@@ -30,6 +30,7 @@ set autowrite
 set laststatus=2
 set wildmenu
 set modifiable
+set notermguicolors
 
 " SNIPPETS:
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>10G
@@ -56,8 +57,8 @@ endfunction
 " Status line
 set statusline=%!MyStatusLine()
 
-highlight clear SignColumn
-hi Pmenu ctermbg=darkgray ctermfg=white
+" highlight clear SignColumn
+" hi Pmenu ctermbg=darkgray ctermfg=white
 
 command! MakeTags !ctags -R .
 
@@ -71,7 +72,6 @@ inoremap jj <ESC>
 set updatetime=250
 
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'
 Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
@@ -88,7 +88,8 @@ Plug 'vyperlang/vim-vyper'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ambv/black'
-
+Plug 'dense-analysis/ale'
+Plug 'doums/darcula'
 
 call plug#end()
 " for typescript
@@ -142,9 +143,31 @@ augroup black_on_save
 augroup end
 let g:black_quiet = 1
 
-let g:ale_linters={
-\ 'python': ['pylint'],
-\}
-let g:ale_completion_enabled = 1
-
 autocmd BufWritePost *.py execute ':Black'
+
+" Enable ALE
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\}
+" Set flake8 as the default linter
+let g:ale_python_flake8_executable = 'flake8'
+let g:ale_python_flake8_options = '--max-line-length=88'
+
+" Set pylint as the secondary linter
+let g:ale_python_pylint_executable = 'pylint'
+
+" Use virtual environment's Python interpreter
+let g:ale_python_executable = 'python'
+
+" Configure ALE options
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   'python': ['autopep8', 'yapf', 'isort'],
+\}
+
+" Show linting results in a more friendly way
+let g:ale_echo_cursor = 1
+let g:ale_linters_explicit = 1
+
+" disable copilot
+let g:copilot_enabled = v:false
